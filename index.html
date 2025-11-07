@@ -2,160 +2,250 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="andre">
-    <meta name="description" content="andre web">
-    <meta name="google" content="andre" />
-    <meta name="google" content="andre.my.id" />
-    <meta name="google" content="andrejonatan" />
-    <meta name="google" content="andre jonatan" />
-    <title>GITHUB ANDRE</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Web Andrean">
+  <meta name="description" content="andre web project">
+  <title>Andre GitHub Projects</title>
 
-        h1 {
-            text-align: center;
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        ul#repo-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            width: 80%;
-            max-width: 600px;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        ul#repo-list li {
-            background-color: #fff;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 800px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
 
-        ul#repo-list li:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
+    h1 {
+      color: #2e7d32;
+      margin-bottom: 25px;
+      font-size: 26px;
+    }
 
-        ul#repo-list li a {
-            color: #4CAF50;
-            font-size: 18px;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    ul#repo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-        ul#repo-list li a:hover {
-            color: #2c6b2f;
-        }
+    li.repo-item {
+      background-color: #f9f9f9;
+      margin: 12px 0;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-        #repo-list.loading::after {
-            content: 'Loading...';
-            display: block;
-            text-align: center;
-            font-weight: bold;
-            margin-top: 20px;
-            color: #888;
-        }
-    </style>
+    li.repo-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .repo-name {
+      font-size: 18px;
+      font-weight: 500;
+      color: #2e7d32;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .btn.repo {
+      background: #388e3c;
+      color: #fff;
+    }
+
+    .btn.repo:hover {
+      background: #2e7d32;
+    }
+
+    .btn.web {
+      background: #1976d2;
+      color: #fff;
+    }
+
+    .btn.web:hover {
+      background: #1565c0;
+    }
+
+    .btn.disabled {
+      background: #ccc;
+      color: #777;
+      cursor: not-allowed;
+    }
+
+    .loading {
+      color: #777;
+      font-style: italic;
+      margin-top: 20px;
+    }
+
+    .error {
+      color: #c62828;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
 </head>
 
 <body>
-    <div>
-        <h1>GitHub Repositories of Andre</h1>
-        <ul id="repo-list" class="loading"></ul>
-    </div>
+  <div class="container">
+    <h1>GitHub Projects of Andre</h1>
+    <div id="status" class="loading">Loading repositories...</div>
+    <ul id="repo-list"></ul>
+    <footer>© 2025 andrejonatan</footer>
+  </div>
 
-    <script>
-        async function getReposWithIndexOrReadme(username) {
-            const HEADERS = {}; // tanpa token
-            const repoList = document.getElementById("repo-list");
+  <script>
+    async function getReposWithIndexOrReadme(username) {
+      const repoList = document.getElementById("repo-list");
+      const status = document.getElementById("status");
 
-            // cek cache
-            const cachedRepos = localStorage.getItem(`repos_${username}`);
-            if (cachedRepos) {
-                displayRepos(JSON.parse(cachedRepos));
-                return;
-            }
+      // Cek cache
+      const cached = localStorage.getItem(`repos_${username}`);
+      if (cached) {
+        displayRepos(JSON.parse(cached));
+        status.textContent = "Loaded from cache ✅";
+        return;
+      }
 
-            try {
-                // ambil daftar repositori
-                const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`, {
-                    headers: HEADERS
-                });
-                const repos = await reposResponse.json();
+      try {
+        const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+        if (!reposResponse.ok) throw new Error("Failed to fetch repositories");
+        const repos = await reposResponse.json();
 
-                const validRepos = [];
+        const validRepos = [];
 
-                // cek tiap repo
-                for (const repo of repos) {
-                    const { name, owner } = repo;
+        for (const repo of repos) {
+          const indexUrl = `https://api.github.com/repos/${repo.owner.login}/${repo.name}/contents/index.html`;
+          const readmeUrl = `https://api.github.com/repos/${repo.owner.login}/${repo.name}/contents/README.md`;
 
-                    const indexUrl = `https://api.github.com/repos/${owner.login}/${name}/contents/index.html`;
-                    const readmeUrl = `https://api.github.com/repos/${owner.login}/${name}/contents/README.md`;
+          const [indexResp, readmeResp] = await Promise.allSettled([
+            fetch(indexUrl),
+            fetch(readmeUrl)
+          ]);
 
-                    let hasIndexOrReadme = false;
-
-                    try {
-                        const indexResp = await fetch(indexUrl, { headers: HEADERS });
-                        if (indexResp.status === 200) {
-                            hasIndexOrReadme = true;
-                        } else {
-                            const readmeResp = await fetch(readmeUrl, { headers: HEADERS });
-                            if (readmeResp.status === 200) hasIndexOrReadme = true;
-                        }
-                    } catch (err) {
-                        console.error(`Error checking ${name}:`, err);
-                    }
-
-                    if (hasIndexOrReadme) {
-                        validRepos.push(name);
-                    }
-                }
-
-                // simpan cache
-                localStorage.setItem(`repos_${username}`, JSON.stringify(validRepos));
-
-                // tampilkan
-                displayRepos(validRepos);
-
-            } catch (error) {
-                console.error("Error fetching repos:", error);
-            }
+          if (
+            (indexResp.status === "fulfilled" && indexResp.value.status === 200) ||
+            (readmeResp.status === "fulfilled" && readmeResp.value.status === 200)
+          ) {
+            validRepos.push(repo.name);
+          }
         }
 
-        function displayRepos(repos) {
-            const repoList = document.getElementById("repo-list");
-            repoList.classList.remove("loading");
-
-            repos.forEach(repoName => {
-                const li = document.createElement("li");
-                const a = document.createElement("a");
-                a.href = `./${repoName}`;
-                a.textContent = repoName;
-                a.target = "_blank";
-                li.appendChild(a);
-                repoList.appendChild(li);
-            });
+        if (validRepos.length === 0) {
+          status.textContent = "No repositories with index.html or README.md found.";
+          return;
         }
 
-        // username ganti jadi 'andre'
-        getReposWithIndexOrReadme("andrejonatan");
-    </script>
+        localStorage.setItem(`repos_${username}`, JSON.stringify(validRepos));
+        displayRepos(validRepos);
+        status.textContent = "Repositories loaded ✅";
+
+      } catch (err) {
+        console.error(err);
+        status.className = "error";
+        status.textContent = "Failed to fetch GitHub data ❌";
+      }
+    }
+
+    async function displayRepos(repos) {
+      const repoList = document.getElementById("repo-list");
+      repoList.innerHTML = "";
+
+      for (const repoName of repos) {
+        const li = document.createElement("li");
+        li.classList.add("repo-item");
+
+        const repoLabel = document.createElement("span");
+        repoLabel.className = "repo-name";
+        repoLabel.textContent = repoName;
+
+        const btnGroup = document.createElement("div");
+        btnGroup.className = "buttons";
+
+        // Tombol ke repo GitHub
+        const repoBtn = document.createElement("a");
+        repoBtn.href = `https://github.com/andrejonatan/${repoName}`;
+        repoBtn.textContent = "Repo";
+        repoBtn.className = "btn repo";
+        repoBtn.target = "_blank";
+
+        // Tombol ke web (cek domain)
+        const webBtn = document.createElement("a");
+        webBtn.className = "btn web disabled";
+        webBtn.textContent = "Web";
+        webBtn.href = "#";
+
+        // Cek apakah link web hidup
+        const webUrl = `https://andrean.my.id/${repoName}/`;
+        try {
+          const resp = await fetch(webUrl, { method: "HEAD" });
+          if (resp.ok) {
+            webBtn.href = webUrl;
+            webBtn.classList.remove("disabled");
+            webBtn.target = "_blank";
+          }
+        } catch (err) {
+          console.log(`No site for ${repoName}`);
+        }
+
+        btnGroup.appendChild(repoBtn);
+        btnGroup.appendChild(webBtn);
+
+        li.appendChild(repoLabel);
+        li.appendChild(btnGroup);
+        repoList.appendChild(li);
+      }
+    }
+
+    // Jalankan
+    getReposWithIndexOrReadme("andrejonatan");
+  </script>
 </body>
 
 </html>
