@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="title" content="Web Andrean">
-  <meta name="description" content="andre web project">
+  <meta name="description" content="Website - Andre">
   <title>Andre GitHub Projects</title>
 
   <style>
@@ -15,8 +15,11 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
-      color: #333;
+      background:
+        linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)),
+        url('https://th.bing.com/th/id/OIP.gM8pAqwLZTQ1VykZtyzlnAHaEK?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3') no-repeat center center fixed;
+      background-size: cover;
+      color: #f5f5f5;
       margin: 0;
       padding: 0;
       display: flex;
@@ -26,20 +29,67 @@
     }
 
     .container {
-      background: #fff;
+      background: rgba(17, 34, 64, 0.9);
       padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
       width: 90%;
       max-width: 800px;
       text-align: center;
       transition: all 0.3s ease;
+      backdrop-filter: blur(6px);
     }
 
     h1 {
-      color: #2e7d32;
+      color: #64ffda;
       margin-bottom: 25px;
       font-size: 26px;
+    }
+
+    /* --- GALLERY SECTION --- */
+    .gallery {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px; /* jarak antar gambar diperbesar */
+      margin-bottom: 35px;
+    }
+
+    .gallery img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* GIF di tengah: biarkan mengikuti urutan DOM agar berada di tengah */
+    .gallery img.gif-center {
+      /* hapus/ubah ordering yang memaksa urutan; gunakan urutan DOM (gambar kedua) */
+      order: unset;
+      width: 170px;
+      height: 170px;
+    }
+
+    @media (max-width: 600px) {
+      .gallery {
+        flex-direction: column;
+      }
+
+      .gallery img {
+        width: 80%;
+        height: auto;
+      }
+
+      .gallery img.gif-center {
+        order: unset;
+      }
     }
 
     ul#repo-list {
@@ -49,11 +99,11 @@
     }
 
     li.repo-item {
-      background-color: #f9f9f9;
+      background-color: rgba(30, 58, 138, 0.3);
       margin: 12px 0;
       padding: 16px;
       border-radius: 12px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       display: flex;
       justify-content: space-between;
@@ -64,13 +114,13 @@
 
     li.repo-item:hover {
       transform: translateY(-3px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
 
     .repo-name {
       font-size: 18px;
       font-weight: 500;
-      color: #2e7d32;
+      color: #ffffff;
     }
 
     .buttons {
@@ -86,40 +136,39 @@
       font-weight: 600;
       transition: all 0.2s ease;
       display: inline-block;
+      color: #fff;
     }
 
     .btn.repo {
-      background: #388e3c;
-      color: #fff;
+      background: #2563eb;
     }
 
     .btn.repo:hover {
-      background: #2e7d32;
+      background: #1d4ed8;
     }
 
     .btn.web {
-      background: #1976d2;
-      color: #fff;
+      background: #3b82f6;
     }
 
     .btn.web:hover {
-      background: #1565c0;
+      background: #2563eb;
     }
 
     .btn.disabled {
-      background: #ccc;
-      color: #777;
+      background: #555;
+      color: #999;
       cursor: not-allowed;
     }
 
     .loading {
-      color: #777;
+      color: #aaa;
       font-style: italic;
       margin-top: 20px;
     }
 
     .error {
-      color: #c62828;
+      color: #ef4444;
       font-weight: bold;
       margin-top: 20px;
     }
@@ -127,7 +176,7 @@
     footer {
       margin-top: 20px;
       font-size: 14px;
-      color: #888;
+      color: #aaa;
     }
   </style>
 </head>
@@ -135,9 +184,17 @@
 <body>
   <div class="container">
     <h1>GitHub Projects of Andre</h1>
+
+    <!-- GALLERY SECTION -->
+    <div class="gallery">
+      <img src="https://i.pinimg.com/736x/59/9f/f8/599ff879984c82dbf06c6bf5e52c59e7.jpg" alt="Art 1">
+      <img src="https://media.tenor.com/7mSj4FRRZP0AAAAM/kiyotaka-ayanokoji-eyes.gif" class="gif-center" alt="Ayanokoji Eyes">
+      <img src="https://i.pinimg.com/736x/01/d0/a8/01d0a858da40c99e5cbe52446f8366ed.jpg" alt="Art 2">
+    </div>
+
     <div id="status" class="loading">Loading repositories...</div>
     <ul id="repo-list"></ul>
-    <footer>© 2025 andrejonatan</footer>
+    <footer>@andrejonatan</footer>
   </div>
 
   <script>
@@ -145,7 +202,6 @@
       const repoList = document.getElementById("repo-list");
       const status = document.getElementById("status");
 
-      // Cek cache
       const cached = localStorage.getItem(`repos_${username}`);
       if (cached) {
         displayRepos(JSON.parse(cached));
@@ -208,20 +264,17 @@
         const btnGroup = document.createElement("div");
         btnGroup.className = "buttons";
 
-        // Tombol ke repo GitHub
         const repoBtn = document.createElement("a");
         repoBtn.href = `https://github.com/andrejonatan/${repoName}`;
         repoBtn.textContent = "Repo";
         repoBtn.className = "btn repo";
         repoBtn.target = "_blank";
 
-        // Tombol ke web (cek domain)
         const webBtn = document.createElement("a");
         webBtn.className = "btn web disabled";
         webBtn.textContent = "Web";
         webBtn.href = "#";
 
-        // Cek apakah link web hidup
         const webUrl = `https://andrean.my.id/${repoName}/`;
         try {
           const resp = await fetch(webUrl, { method: "HEAD" });
@@ -243,7 +296,6 @@
       }
     }
 
-    // Jalankan
     getReposWithIndexOrReadme("andrejonatan");
   </script>
 </body>
