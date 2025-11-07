@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="ariaf">
-    <meta name="description" content="ariaf ariafatah web">
-    <meta name="google" content="ariaf" />
-    <meta name="google" content="ariaf.my.id" />
-    <meta name="google" content="ariafatah" />
-    <meta name="google" content="aria fatah" />
-    <title>GITHUB ARIA</title>
+    <meta name="title" content="andre">
+    <meta name="description" content="andre web">
+    <meta name="google" content="andre" />
+    <meta name="google" content="andre.my.id" />
+    <meta name="google" content="andrejonatan" />
+    <meta name="google" content="andre jonatan" />
+    <title>GITHUB ANDRE</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -63,7 +63,6 @@
             color: #2c6b2f;
         }
 
-        /* Loading Spinner */
         #repo-list.loading::after {
             content: 'Loading...';
             display: block;
@@ -77,83 +76,85 @@
 
 <body>
     <div>
-        <h1>GitHub Repositories of Aria</h1>
+        <h1>GitHub Repositories of Andre</h1>
         <ul id="repo-list" class="loading"></ul>
     </div>
 
     <script>
-        async function getReposWithIndexHtml(username) {
-            const HEADERS = {}; // Biarkan kosong jika tanpa token
+        async function getReposWithIndexOrReadme(username) {
+            const HEADERS = {}; // tanpa token
             const repoList = document.getElementById("repo-list");
 
-            // Periksa apakah data repositori sudah ada di localStorage
+            // cek cache
             const cachedRepos = localStorage.getItem(`repos_${username}`);
             if (cachedRepos) {
-                // Jika ada cache, langsung tampilkan daftar repositori dari cache
                 displayRepos(JSON.parse(cachedRepos));
                 return;
             }
 
             try {
-                // Fetch daftar repositori
+                // ambil daftar repositori
                 const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`, {
                     headers: HEADERS
                 });
                 const repos = await reposResponse.json();
 
-                const reposWithIndexHtml = [];
+                const validRepos = [];
 
-                // Cek setiap repositori untuk melihat apakah memiliki index.html
+                // cek tiap repo
                 for (const repo of repos) {
                     const { name, owner } = repo;
-                    const contentsUrl = `https://api.github.com/repos/${owner.login}/${name}/contents/index.html`;
+
+                    const indexUrl = `https://api.github.com/repos/${owner.login}/${name}/contents/index.html`;
+                    const readmeUrl = `https://api.github.com/repos/${owner.login}/${name}/contents/README.md`;
+
+                    let hasIndexOrReadme = false;
 
                     try {
-                        const contentResponse = await fetch(contentsUrl, { headers: HEADERS });
-
-                        // Jika status 200, file index.html ada
-                        if (contentResponse.status === 200) {
-                            reposWithIndexHtml.push(name);
+                        const indexResp = await fetch(indexUrl, { headers: HEADERS });
+                        if (indexResp.status === 200) {
+                            hasIndexOrReadme = true;
+                        } else {
+                            const readmeResp = await fetch(readmeUrl, { headers: HEADERS });
+                            if (readmeResp.status === 200) hasIndexOrReadme = true;
                         }
                     } catch (err) {
                         console.error(`Error checking ${name}:`, err);
                     }
+
+                    if (hasIndexOrReadme) {
+                        validRepos.push(name);
+                    }
                 }
 
-                // Simpan data repositori yang sudah diperoleh ke localStorage
-                localStorage.setItem(`repos_${username}`, JSON.stringify(reposWithIndexHtml));
+                // simpan cache
+                localStorage.setItem(`repos_${username}`, JSON.stringify(validRepos));
 
-                // Tampilkan repositori dengan link ke halaman
-                displayRepos(reposWithIndexHtml);
+                // tampilkan
+                displayRepos(validRepos);
 
             } catch (error) {
                 console.error("Error fetching repos:", error);
             }
         }
 
-        function displayRepos(reposWithIndexHtml) {
+        function displayRepos(repos) {
             const repoList = document.getElementById("repo-list");
-
-            // Hapus status loading setelah repositori ditampilkan
             repoList.classList.remove("loading");
 
-            // Tampilkan repositori dengan link ke halaman
-            reposWithIndexHtml.forEach(repoName => {
-                const listItem = document.createElement("li");
-                const link = document.createElement("a");
-
-                // Gunakan path relatif untuk mengarahkan ke repositori lokal
-                link.href = `./${repoName}`; // Ganti URL dengan path relatif
-                link.textContent = repoName;
-                link.target = "_blank"; // Buka di tab baru
-
-                listItem.appendChild(link);
-                repoList.appendChild(listItem);
+            repos.forEach(repoName => {
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.href = `./${repoName}`;
+                a.textContent = repoName;
+                a.target = "_blank";
+                li.appendChild(a);
+                repoList.appendChild(li);
             });
         }
 
-        // Ganti 'username' dengan nama pengguna GitHub Anda
-        getReposWithIndexHtml("andrejonatan");
+        // username ganti jadi 'andre'
+        getReposWithIndexOrReadme("andrejonatan");
     </script>
 </body>
 
