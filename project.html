@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>andrean.my.id</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/tailwind-config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="text-white min-h-screen relative overflow-x-hidden" style="background: radial-gradient(800px 400px at 20% 10%, rgba(34,211,238,0.25), transparent 45%), radial-gradient(700px 400px at 80% 20%, rgba(249,115,22,0.25), transparent 45%), radial-gradient(600px 300px at 50% 80%, rgba(34,211,238,0.18), transparent 50%), #0a1a2f;">
+    <!-- navbar -->
+        <nav id="navbar" class="fixed top-0 left-0 w-full md:w-auto md:top-4 md:left-1/2 md:-translate-x-1/2 z-[9999] transition-all duration-300">
+        <button id="menuBtn" class="fixed left-4 top-4 md:hidden text-orange p-2 rounded-full">☰</button>
+        <div id="navInner" class="hidden md:inline-flex relative w-[90%] md:w-auto items-center justify-start md:justify-center pl-6 pr-6 py-3 bg-navy/70 backdrop-blur rounded-full transition-all duration-300">
+        <ul class="hidden md:flex gap-6 justify-center">
+            <li><a href="index.html" class="nav-btn">Home</a></li>
+            <li><a href="index.html#about" class="nav-btn">About</a></li>
+            <li><a href="repo.html" class="nav-btn">Repo</a></li>
+            <li><a href="#project" class="nav-btn">Project</a></li>
+        </ul>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden mt-4 bg-navy/90 rounded-xl p-4">
+        <ul class="flex flex-col gap-4 text-center">
+            <li><a href="#home" class="nav-btn">Home</a></li>
+            <li><a href="#about" class="nav-btn">About</a></li>
+            <li><a href="repo.html" class="nav-btn">Repo</a></li>
+            <li><a href="#project" class="nav-btn">Project</a></li>
+        </ul>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <!-- project -->
+    <section id="project" class="w-full py-10 text-center">
+    <h2 class="section-title text-orange text-3xl font-bold mb-6 ">Projects</h2>
+    <div class="flex flex-wrap justify-center gap-6 px-4">
+
+        <div class="project-card p-4 w-full max-w-sm border border-orange-500 rounded-xl flex flex-col items-center text-center">
+            <img src="images/Edukids.png" alt="Projects 1" class="w-full h-48 object-cover rounded-lg">
+            <p class="text-sm text-orange mt-3 font-bold">Edukids</p>
+            <p class="text-sm text-gray-300">- Web Edukasi Anak -</p>
+            <br>
+            <p class="text-justify text-gray-300">
+                Edukids adalah sebuah platform web edukasi anak yang dirancang untuk memberikan pengalaman belajar yang seru, menyenangkan, dan interaktif secara digital. Website ini fokus pada penyajian konten edukatif dengan antarmuka yang ceria dan ramah anak, serta dilengkapi fitur reservasi untuk memudahkan orang tua dalam mendaftarkan anak-anak mereka ke program pembelajaran yang tersedia. Selain itu, platform ini mengintegrasikan berbagai elemen visual menarik yang bertujuan untuk menstimulasi kreativitas dan rasa ingin tahu anak selama bereksplorasi di dalam situs. Pengembangan Edukids juga mengedepankan kemudahan navigasi agar seluruh fitur dapat diakses dengan cepat, memberikan rasa aman dan nyaman bagi keluarga yang ingin mengoptimalkan potensi belajar anak di era modern.
+            </p>
+           <p class="text-gray-300 text-justify">Berikut adalah tools yang digunakan dalam pengembangan Edukids:</p>
+
+            <ol class="text-gray-300 text-justify list-decimal list-inside mt-2 space-y-2">
+                <li><span class="text-orange font-bold">HTML5</span>: Struktur dasar halaman web.</li>
+                <li><span class="text-orange font-bold">Tailwind CSS</span>: Framework CSS untuk desain responsif dan modern.</li>
+                <li><span class="text-orange font-bold">Vanilla JavaScript</span>: Untuk interaktivitas ringan di sisi klien.</li>
+                <li><span class="text-orange font-bold">Font Awesome</span>: Koleksi ikon untuk elemen visual.</li>
+                <li><span class="text-orange font-bold">AdminLTE Template</span>: Template admin panel berbasis Bootstrap untuk manajemen konten.</li>
+                <li><span class="text-orange font-bold">GitHub Pages</span>: Layanan hosting statis untuk deployment web dengan custom domain.</li>
+            </ol>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="mt-3 flex gap-5">
+                 <a href="https://andrean.my.id/site-mini/edukids/home.html" target="_blank" class="project-demo px-6 py-1 rounded-md">Demo</a>
+                 <a href="https://github.com/andrejonatan/site-mini/tree/main/edukids" class="project-demo px-6 py-1 rounded-md">Source</a>
+            </div>
+        </div>
+
+        <div class="project-card p-4 w-full max-w-sm border border-orange-500 rounded-xl flex flex-col items-center text-center">
+            <img src="images/Tiketify.png" alt="Projects 2" class="w-full h-48 object-cover rounded-lg">
+            <p class="text-sm text-orange mt-3 font-bold">Tiketify</p>
+            <p class="text-sm text-gray-300">- Web Penjualan Tiket Bioskop -</p>
+            <br>
+            <p class="text-justify text-gray-300">Tiketify adalah aplikasi reservasi tiket bioskop berbasis web yang dibangun menggunakan Django Framework untuk menyediakan solusi pemesanan tiket yang dinamis, aman, dan terstruktur. Web ini dirancang untuk mempermudah pengguna mengeksplorasi daftar film serta melakukan reservasi secara digital, sementara di sisi pengelola, sistem ini menawarkan kemudahan manajemen data film dan jadwal tayang secara efisien. Melalui sistem otomatisasi ini, risiko kesalahan input data dan antrean fisik dapat dikurangi secara signifikan guna meningkatkan kepuasan pelanggan saat bertransaksi. Selain itu, integrasi database yang solid memungkinkan platform ini menyimpan riwayat pemesanan secara akurat, sekaligus memberikan skalabilitas bagi pengembang untuk menambahkan fitur-fitur baru di masa mendatang.</p>
+           <p class="text-gray-300 text-justify">Berikut adalah tools yang digunakan dalam pengembangan Tiketify:</p>
+
+            <ol class="text-gray-300 list-decimal list-inside mt-2 space-y-2 max-w-md mx-auto">
+                <li class="text-justify">
+                    <span class="text-orange font-bold">Django</span> (Python): Framework utama untuk backend dan logika sistem.
+                </li>
+                <li class="text-justify">
+                    <span class="text-orange font-bold">Bootstrap</span>: Framework untuk desain UI yang responsif.
+                </li>
+                <li class="text-justify">
+                    <span class="text-orange font-bold">AOS</span> (Animate On Scroll): Library untuk efek animasi scroll.
+                </li>
+                <li class="text-justify">
+                    <span class="text-orange font-bold">Font Awesome</span>: Koleksi ikon untuk elemen visual.
+                </li>
+                <li class="text-justify">
+                    <span class="text-orange font-bold">HTML5 & CSS3</span>: Struktur dasar dan styling halaman web.
+                </li>
+                <li class="text-justify">
+                    <span class="text-orange font-bold">Vanilla JavaScript</span>: Untuk interaksi ringan di sisi klien.
+                </li>
+            </ol>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <div class="mt-3 flex gap-5">
+               <a href="https://aria.my.id/tiketify" target="_blank" class="project-demo px-6 py-1 rounded-md">Demo</a>
+               <a href="https://github.com/andrejonatan/tiketify" class="project-demo px-6 py-1 rounded-md">Source</a>
+            </div>
+        </div>
+    </div>
+    <div class="btn-back mt-8">
+                <a href="index.html" class="project-demo px-6 py-1 rounded-md">Back</a>
+
+    </div>
+</section>
+    <!-- social -->
+     <!-- Social -->
+    <section id="social" class="text-center">
+      <h2 class="section-title text-orange">Social</h2>
+      <div class="flex justify-center gap-6 mt-6">
+        <a href="https://github.com/andrejonatan" target="_blank" class="social-btn"><i data-lucide="github"></i></a>
+        <a href="https://instagram.com/dresennn" target="_blank" class="social-btn"><i data-lucide="instagram"></i></a>
+        <a href="https://www.linkedin.com/in/andreanjonatan" target="_blank" class="social-btn"><i data-lucide="linkedin"></i></a>
+        <a href="https://youtube.com/@ytandrean" target="_blank" class="social-btn"><i data-lucide="youtube"></i></a>
+      </div>
+    </section>
+
+
+<footer class="text-center text-gray-300 py-6 font-semibold">This is Project Pages</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

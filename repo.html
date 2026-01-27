@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>andrean.my.id</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/tailwind-config.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="text-white min-h-screen relative overflow-x-hidden" style="background: radial-gradient(800px 400px at 20% 10%, rgba(34,211,238,0.25), transparent 45%), radial-gradient(700px 400px at 80% 20%, rgba(249,115,22,0.25), transparent 45%), radial-gradient(600px 300px at 50% 80%, rgba(34,211,238,0.18), transparent 50%), #0a1a2f;">
+
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full md:w-auto md:top-4 md:left-1/2 md:-translate-x-1/2 z-[9999] transition-all duration-300">
+    <button id="menuBtn" class="fixed left-4 top-4 md:hidden text-orange p-2 rounded-full">☰</button>
+    <div id="navInner" class="hidden md:inline-flex relative w-[90%] md:w-auto items-center justify-start md:justify-center pl-6 pr-6 py-3 bg-navy/70 backdrop-blur rounded-full transition-all duration-300">
+      <ul class="hidden md:flex gap-6 justify-center">
+        <li><a href="index.html" class="nav-btn">Home</a></li>
+        <li><a href="index.html#about" class="nav-btn">About</a></li>
+        <li><a href="#repo" class="nav-btn">Repo</a></li>
+        <li><a href="project.html" class="nav-btn">Project</a></li>
+      </ul>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden mt-4 bg-navy/90 rounded-xl p-4">
+      <ul class="flex flex-col gap-4 text-center">
+        <li><a href="index.html" class="nav-btn">Home</a></li>
+        <li><a href="index.html#about" class="nav-btn">About</a></li>
+        <li><a href="#repo" class="nav-btn">Repo</a></li>
+        <li><a href="project.html" class="nav-btn">Project</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <br>
+  <br>
+  <br>
+
+  <main class="max-w-4xl mx-auto px-6 py-12 space-y-24">
+    <section id="repo" class="w-full py-10 text-center">
+      <h2 class="section-title text-orange font-bold text-2xl text-center mb-8">GitHub Repositories</h2>
+      <div id="repo-list" class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 justify-center"></div>
+      <div class="btn-back mt-8">
+        <a href="index.html" class="project-demo px-6 py-1 rounded-md">Back</a>
+      </div>
+    </section>
+
+    <!-- Social -->
+    <section id="social" class="text-center">
+      <h2 class="section-title text-orange font-bold text-2xl">Social</h2>
+      <div class="flex justify-center gap-6 mt-6">
+        <a href="https://github.com/andrejonatan" target="_blank" class="social-btn"><i data-lucide="github"></i></a>
+        <a href="https://instagram.com/dresennn" target="_blank" class="social-btn"><i data-lucide="instagram"></i></a>
+        <a href="https://www.linkedin.com/in/andreanjonatan" target="_blank" class="social-btn"><i data-lucide="linkedin"></i></a>
+        <a href="https://youtube.com/@ytandrean" target="_blank" class="social-btn"><i data-lucide="youtube"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="text-center py-10 text-white/60 text-sm">
+    This website was created using <span class="text-orange">HTML</span>, <span class="text-orange">Tailwind CSS</span>, <span class="text-orange">JavaScript</span>, and <span class="text-orange">GitHub API</span>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,260 +1,119 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>andrean.my.id</title>
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/tailwind-config.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="text-gray-800">
-  <div class="bg-overlay"></div>
-  <div class="page-content min-h-screen">
+<body class="text-white min-h-screen relative overflow-x-hidden" style="background: radial-gradient(800px 400px at 20% 10%, rgba(34,211,238,0.25), transparent 45%), radial-gradient(700px 400px at 80% 20%, rgba(249,115,22,0.25), transparent 45%), radial-gradient(600px 300px at 50% 80%, rgba(34,211,238,0.18), transparent 50%), #0a1a2f;">
 
-    <!-- Navbar -->
-    <header class="navbar">
-      <div class="navbar-inner">
-        <a href="#" class="brand" onclick="showSection('home')">
-          <div class="w-12 h-12 rounded-full overflow-hidden">
-            <img id="avatar" src="https://avatars.githubusercontent.com/u/112368139?v=4" alt="Profile" class="w-full h-full object-cover">
-          </div>
-          <div class="brand-text">
-            <h1 id="profile-name" class="text-lg font-bold">Andre Jonatan</h1>
-            <p class="text-xs text-slate-300">Informatics Student</p>
-          </div>
-        </a>
-        <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-          <i class="fas fa-bars"></i>
-        </button>
-        <nav class="nav-menu">
-          <a href="#home" onclick="showSection('home')" class="nav-btn active" id="btn-home">
-            <i class="fas fa-house mr-2"></i> Beranda
-          </a>
-          <a href="#about" onclick="showSection('about')" class="nav-btn" id="btn-about">
-            <i class="fas fa-user mr-2"></i> About
-          </a>
-          <a href="#github" onclick="showSection('github')" class="nav-btn" id="btn-github">
-            <i class="fab fa-github mr-2"></i> GitHub Repos
-          </a>
-          <a href="#projects" onclick="showSection('projects')" class="nav-btn" id="btn-projects">
-            <i class="fas fa-code mr-2"></i> Mini Projects
-          </a>
-          <a href="#gallery" onclick="showSection('gallery')" class="nav-btn" id="btn-gallery">
-            <i class="fas fa-images mr-2"></i> Gallery
-          </a>
-          <a href="#contact" onclick="showSection('contact')" class="nav-btn" id="btn-contact">
-            <i class="fas fa-envelope mr-2"></i> Contact
-          </a>
-        </nav>
-      </div>
-    </header>
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full md:w-auto md:top-4 md:left-1/2 md:-translate-x-1/2 z-[9999] transition-all duration-300">
+    <button id="menuBtn" class="fixed left-4 top-4 md:hidden text-orange p-2 rounded-full">☰</button>
+    <div id="navInner" class="hidden md:inline-flex relative w-[90%] md:w-auto items-center justify-start md:justify-center pl-6 pr-6 py-3 bg-navy/70 backdrop-blur rounded-full transition-all duration-300">
+      <ul class="hidden md:flex gap-6 justify-center">
+        <li><a href="#home" class="nav-btn">Home</a></li>
+        <li><a href="#about" class="nav-btn">About</a></li>
+        <li><a href="repo.html" class="nav-btn">Repo</a></li>
+        <li><a href="project.html" class="nav-btn">Project</a></li>
+      </ul>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden mt-4 bg-navy/90 rounded-xl p-4">
+      <ul class="flex flex-col gap-4 text-center">
+        <li><a href="#home" class="nav-btn">Home</a></li>
+        <li><a href="#about" class="nav-btn">About</a></li>
+        <li><a href="repo.html" class="nav-btn">Repo</a></li>
+        <li><a href="project.html" class="nav-btn">Project</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <!-- Main Content -->
-    <main class="flex-1 p-6 pt-24">
-      <!-- Home -->
-      <section id="home" class="section">
-        <div class="max-w-3xl mx-auto text-center">
-          <span class="text-sm uppercase tracking-widest text-orange-500 font-semibold text-outline-white">andrean.my.id</span>
-          <h2 class="text-4xl md:text-5xl font-bold mt-2 leading-tight text-outline-black">
-            Selamat datang di <span class="text-blue-600 text-outline-black">web saya</span>
-          </h2>
-          <p class="text-gray-600 mt-4 leading-relaxed text-outline-black">
-            Saya Andrean Jonatan, mahasiswa Informatika dengan fokus Frontend Development, Cybersecurity, dan Networking.
-            Jelajahi project dan karya terbaru saya di sini.
-          </p>
-          <div class="flex flex-wrap justify-center gap-3 mt-6">
-            <button onclick="showSection('projects')"
-              class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">
-              Lihat Project
-            </button>
-            <button onclick="showSection('contact')"
-              class="bg-cyan-500 text-white px-5 py-2 rounded-lg hover:bg-cyan-600 transition">
-              Kontak Saya
-            </button>
-          </div>
-          <div class="flex flex-wrap justify-center items-center gap-4 mt-6 text-sm text-gray-500">
-            <span class="flex items-center gap-2"><i class="fas fa-laptop-code text-blue-600"></i> Frontend</span>
-            <span class="flex items-center gap-2"><i class="fas fa-shield-halved text-emerald-600"></i> Security</span>
-            <span class="flex items-center gap-2"><i class="fas fa-network-wired text-orange-500"></i> Networking</span>
-          </div>
-        </div>
-        <div class="card p-6 mt-8 max-w-3xl mx-auto">
-          <h3 class="text-xl font-semibold mb-4 text-center">Highlight</h3>
+  <main class="max-w-4xl mx-auto px-6 py-12 space-y-24">
+    <section id="home" class="text-center pt-24">
+      <h1 class="text-4xl font-bold text-orange">Hi, I'm Andre Jonatan</h1>
+      <p class="mt-4 text-lg text-gray-300">Building modern and responsive web interfaces,
+      Focused on frontend development and continuous learning,
+      Showcasing projects, repositories, and real progress</p>
+    </section>
+
+    <section id="highlight" class="text-center">
+       <div class="card p-6 mt-8 max-w-3xl mx-auto">
+          <h3 class="section-title text-orange font-bold text-2xl mb-8">Highlight</h3>
           <div class="grid grid-cols-3 gap-3 text-center">
             <div class="p-3 rounded-lg bg-slate-50">
-              <p class="text-2xl font-bold text-blue-600">10+</p>
-              <p class="text-xs text-orange-500">Mini Projects</p>
+              <p class="text-2xl font-bold text-orange">10+</p>
+              <p class="text-xs text-navy">Mini Projects</p>
             </div>
             <div class="p-3 rounded-lg bg-slate-50">
-              <p class="text-2xl font-bold text-cyan-600">3</p>
-              <p class="text-xs text-orange-500">Bidang Fokus</p>
+              <p class="text-2xl font-bold text-orange">3</p>
+              <p class="text-xs text-navy">Bidang Fokus</p>
             </div>
             <div class="p-3 rounded-lg bg-slate-50">
-              <p class="text-2xl font-bold text-emerald-600">24/7</p>
-              <p class="text-xs text-orange-500">Belajar</p>
+              <p class="text-2xl font-bold text-orange">24/7</p>
+              <p class="text-xs text-navy">Belajar</p>
             </div>
           </div>
-          <div class="mt-5 text-sm text-gray-600 text-center">
+          <div class="mt-5 text-sm text-orange text-center">
             <p>Eksplorasi repo dan live demo untuk melihat progres belajar dan hasil proyek terbaru.</p>
           </div>
         </div>
-      </section>
+    </section>
 
-      <!-- About -->
-      <section id="about" class="section hidden">
-        <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-          <i class="fas fa-user text-blue-600"></i> About Me
-        </h2>
-        <div class="card about-card">
-          <div class="about-avatar">
-            <img id="about-avatar" src="https://avatars.githubusercontent.com/u/112368139?v=4" alt="Profile" />
-          </div>
-          <div class="about-content">
-            <p class="text-gray-600" ><b>Siapa Saya?</b></p>
-            <p class="text-gray-600 mb-4 leading-relaxed" style="text-align: left;">Halo, saya Andrean Jonatan Laluan, seorang mahasiswa Informatika yang memiliki ketertarikan pada bidang Frontend Development, Cybersecurity, dan Networking. Saya menikmati proses memahami bagaimana sebuah aplikasi dan sistem bekerja, baik dari sisi tampilan antarmuka maupun aspek teknis di baliknya.</p>
-            <p class="text-gray-600 mb-4 leading-relaxed" style="text-align: left;">Saya aktif mengembangkan kemampuan melalui pembuatan mini project dan eksplorasi teknologi, yang sebagian besar saya dokumentasikan di GitHub sebagai bagian dari proses belajar berkelanjutan. Dalam pengembangan web, saya terbiasa menggunakan HTML, Tailwind CSS, dan JavaScript untuk membangun antarmuka yang responsif, bersih, dan fungsional, dengan fokus pada pengalaman pengguna dan struktur kode yang rapi.</p>
-            <p class="text-gray-600 mb-4 leading-relaxed" style="text-align: left;">Selain frontend, saya juga tertarik mempelajari keamanan sistem dan dasar-dasar jaringan sebagai bekal jangka panjang di dunia IT. Saya terbuka terhadap hal baru, konsisten belajar, dan terus berusaha meningkatkan kualitas diri melalui praktik langsung serta pengembangan proyek nyata.</p>
-          </div>
-        </div>
-      </section>
+    <section id="about" class="text-center">
+      <h2 class="section-title text-orange font-bold text-2xl">About Me</h2>
+      <p class="mt-4 text-white/80 max-w-2xl mx-auto">I am Andrean Jonatan Laluan, an Informatics student with a strong interest in Frontend Development, Cybersecurity, and Networking. I focus on building modern, clean, and user-friendly web interfaces using technologies like HTML, Tailwind CSS, and JavaScript.
 
-      <!-- GitHub -->
-      <section id="github" class="section hidden">
-        <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-          <i class="fab fa-github text-gray-800"></i> GitHub Repositories
-        </h2>
-        <div class="mb-4 flex gap-2">
-          <input type="text" id="searchRepo" placeholder="Cari repository..."
-            class="px-4 py-2 border rounded-lg flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <select id="filterLang" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="">Semua Bahasa</option>
-          </select>
-        </div>
-        <div id="github-stats" class="grid grid-cols-3 gap-4 mb-6">
-          <div class="card text-center">
-            <i class="fas fa-book text-3xl text-blue-600 mb-2"></i>
-            <p id="total-repos" class="text-2xl font-bold">-</p>
-            <p class="text-sm text-gray-500">Public Repos</p>
-          </div>
-          <div class="card text-center">
-            <i class="fas fa-star text-3xl text-yellow-500 mb-2"></i>
-            <p id="total-stars" class="text-2xl font-bold">-</p>
-            <p class="text-sm text-gray-500">Total Stars</p>
-          </div>
-          <div class="card text-center">
-            <i class="fas fa-code-branch text-3xl text-green-600 mb-2"></i>
-            <p id="total-forks" class="text-2xl font-bold">-</p>
-            <p class="text-sm text-gray-500">Total Forks</p>
-          </div>
-        </div>
-        <div id="repos-list" class="space-y-3">
-          <div class="card animate-pulse">
-            <div class="h-4 bg-gray-200 rounded w-1/4 mb-2"></div>
-            <div class="h-3 bg-gray-200 rounded w-3/4"></div>
-          </div>
-        </div>
-      </section>
+      I actively improve my skills through hands-on projects, continuous learning, and exploring new technologies. I also have a solid foundation in computer networking and system fundamentals, supported by training and certifications. I enjoy documenting my learning journey and projects on GitHub as part of my growth as a developer.</p>
+    </section>
 
-      <!-- Mini Projects -->
-      <section id="projects" class="section hidden">
-        <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-          <i class="fas fa-code text-purple-600"></i> Mini Projects
-        </h2>
-        <p class="text-gray-500 mb-4">Projects dengan live demo (GitHub Pages)</p>
-        <div id="projects-list" class="grid md:grid-cols-2 gap-4">
-          <div class="card animate-pulse">
-            <div class="h-4 bg-gray-200 rounded w-1/4 mb-2"></div>
-            <div class="h-3 bg-gray-200 rounded w-3/4"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Gallery -->
-      <section id="gallery" class="section hidden">
-        <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-          <i class="fas fa-images text-orange-500"></i> Gallery
-        </h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="card p-3">
-            <img src="images/Edukids.png" alt="Gallery 1" class="w-full h-48 object-cover rounded-lg">
-            <p class="text-sm text-gray-600 mt-3">Edukids - Web Edukasi Anak</p>
+    <!-- Projects -->
+<section id="project" class="w-full py-10 text-center">
+    <h2 class="section-title text-orange font-bold text-2xl text-center mb-8">Projects</h2>
+    <div class="flex flex-wrap justify-center gap-6 px-4">
+        <div class="project-card p-4 w-full max-w-sm border border-orange-500 rounded-xl flex flex-col items-center text-center">
+            <img src="images/Edukids.png" alt="Projects 1" class="w-full h-48 object-cover rounded-lg">
+            <p class="text-sm text-orange mt-3 font-bold">Edukids</p>
+            <p class="text-sm text-gray-300">Web Edukasi Anak</p>
             <div class="mt-3">
-              <a href="https://andrean.my.id/site-mini/edukids/home.html" class="inline-flex items-center gap-2 bg-cyan-500 text-white px-3 py-1.5 rounded-md hover:bg-cyan-600 text-sm">
-                <i class="fas fa-external-link-alt"></i> Demo
-              </a>
+                 <a href="https://andrean.my.id/site-mini/edukids/home.html" class="project-demo px-6 py-1 rounded-md">Demo</a>
             </div>
-          </div>
-          <div class="card p-3">
-            <img src="images/Tiketify.png" alt="Gallery 2" class="w-full h-48 object-cover rounded-lg">
-            <p class="text-sm text-gray-600 mt-3">Tiketify - Web Penjualan Tiket Bioskop</p>
-            <div class="mt-3">
-              <a href="https://aria.my.id/tiketify/" class="inline-flex items-center gap-2 bg-cyan-500 text-white px-3 py-1.5 rounded-md hover:bg-cyan-600 text-sm">
-                <i class="fas fa-external-link-alt"></i> Demo
-              </a>
-            </div>
-          </div>
         </div>
-      </section>
 
-      <!-- Contact -->
-      <section id="contact" class="section hidden">
-        <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
-          <i class="fas fa-envelope text-red-600"></i> Contact
-        </h2>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="card">
-            <h3 class="font-semibold text-lg mb-4">My Social Links</h3>
-            <div class="space-y-4">
-              <a href="https://github.com/andrejonatan" target="_blank"
-                class="flex items-center gap-3 text-gray-600 hover:text-gray-900 transition">
-                <i class="fab fa-github text-2xl"></i>
-                <span>github.com/andrejonatan</span>
-              </a>
-              <a href="https://andrejonatan.github.io/linktree/" target="_blank"
-                class="flex items-center gap-3 text-gray-600 hover:text-gray-900 transition">
-                <i class="fas fa-link text-2xl"></i>
-                <span>linktree</span>
-              </a>
-              <a href="https://andrean.my.id" target="_blank"
-                class="flex items-center gap-3 text-gray-600 hover:text-gray-900 transition">
-                <i class="fas fa-globe text-2xl"></i>
-                <span>andrean.my.id</span>
-              </a>
-              <a href="https://instagram.com/dresennn" target="_blank"
-                class="flex items-center gap-3 text-gray-600 hover:text-gray-900 transition">
-                <i class="fab fa-instagram text-2xl"></i>
-                <span>instagram.com/dresennn</span>
-              </a>
-              <a href="https://youtube.com/@ytandrean" target="_blank"
-                class="flex items-center gap-3 text-gray-600 hover:text-gray-900 transition">
-                <i class="fab fa-youtube text-2xl"></i>
-                <span>youtube.com/@ytandrean</span>
-              </a>
+        <div class="project-card p-4 w-full max-w-sm border border-orange-500 rounded-xl flex flex-col items-center text-center">
+            <img src="images/Tiketify.png" alt="Projects 2" class="w-full h-48 object-cover rounded-lg">
+            <p class="text-sm text-orange mt-3 font-bold">Tiketify</p>
+            <p class="text-sm text-gray-300">Web Penjualan Tiket Bioskop</p>
+            <div class="mt-3">
+               <a href="https://aria.my.id/tiketify" class="project-demo px-6 py-1 rounded-md">Demo</a>
             </div>
-          </div>
-          <div class="card">
-            <h3 class="font-semibold text-lg mb-4">💬 Send a Message</h3>
-            <form id="contact-form" class="space-y-4">
-              <input type="text" placeholder="Nama" required
-                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <input type="email" placeholder="Email" required
-                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <textarea placeholder="Pesan" rows="4" required
-                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-              <button type="submit"
-                class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
-                <i class="fas fa-paper-plane mr-2"></i> Kirim Pesan
-              </button>
-            </form>
-          </div>
         </div>
-      </section>
+
+        <div class="btn-show">
+                <a href="project.html" class="project-demo px-6 py-1 rounded-md">Show More</a>
+        </div>
+    </div>
+</section>
+
+    <!-- Social -->
+    <section id="social" class="text-center">
+      <h2 class="section-title text-orange font-bold text-2xl">Social</h2>
+      <div class="flex justify-center gap-6 mt-6">
+        <a href="https://github.com/andrejonatan" target="_blank" class="social-btn"><i data-lucide="github"></i></a>
+        <a href="https://instagram.com/dresennn" target="_blank" class="social-btn"><i data-lucide="instagram"></i></a>
+        <a href="https://www.linkedin.com/in/andreanjonatan" target="_blank" class="social-btn"><i data-lucide="linkedin"></i></a>
+        <a href="https://youtube.com/@ytandrean" target="_blank" class="social-btn"><i data-lucide="youtube"></i></a>
+      </div>
+    </section>
+
     </main>
-  </div>
 
-  <script src="js/app.js"></script>
+  <footer class="text-center py-10 text-white/60 text-sm">
+    This website was created using <span class="text-orange">HTML</span>, <span class="text-orange">Tailwind CSS</span>, <span class="text-orange">JavaScript</span>, and <span class="text-orange">GitHub API</span>
+  </footer>
+  <script src="js/main.js"></script>
 </body>
 </html>
